@@ -1,7 +1,7 @@
 version: 1.0.0
 name: property-media-rights-gate
 displayName: Property Media Rights Gate
-createdAt: '2026-11-06T17:00:00Z'
+createdAt: '2026-11-06T00:00:00Z'
 description: Offline OPA policies for authored media grants, publication channels, markets, validity windows, crops and attribution requirements.
 license: MIT
 homeURL: https://novasia.estate/
@@ -20,6 +20,9 @@ maintainers:
     email: info@novasia.estate
 provider:
   name: NovAsia Estate
+screenshots:
+  - title: Synthetic three-asset publication review
+    url: https://raw.githubusercontent.com/novasia-estate/property-media-rights-gate/main/docs/report-preview.png
 ignore:
   - tests
 install: |
