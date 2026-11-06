@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-11-06",
+  "channel": "web",
+  "market": "KH",
+  "assets": [
+    {"id": "synthetic-exterior", "cropped": false, "attribution_provided": true},
+    {"id": "synthetic-interior", "cropped": true, "attribution_provided": false},
+    {"id": "synthetic-location-map", "cropped": false, "attribution_provided": false}
+  ],
+  "grants": [
+    {
+      "id": "grant-001", "asset_id": "synthetic-exterior", "evidence_ref": "evidence-001",
+      "reviewer_ref": "reviewer-demo", "confirmed": true, "revoked": false,
+      "valid_from": "2026-01-01", "valid_until": "2026-12-31",
+      "channels": ["web", "portal"], "markets": ["KH", "TH"],
+      "allow_crop": true, "requires_attribution": true, "attribution": "Synthetic Studio / authored example"
+    },
+    {
+      "id": "grant-002", "asset_id": "synthetic-interior", "evidence_ref": "evidence-002",
+      "reviewer_ref": "reviewer-demo", "confirmed": true, "revoked": false,
+      "valid_from": "2026-01-01", "valid_until": "2026-10-31",
+      "channels": ["web"], "markets": ["KH"],
+      "allow_crop": false, "requires_attribution": false, "attribution": ""
+    }
+  ]
+}

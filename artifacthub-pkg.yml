@@ -1,0 +1,28 @@
+version: 1.0.0
+name: property-media-rights-gate
+displayName: Property Media Rights Gate
+createdAt: '2026-11-06T17:00:00Z'
+description: Offline OPA policies for authored media grants, publication channels, markets, validity windows, crops and attribution requirements.
+license: MIT
+homeURL: https://novasia.estate/
+keywords:
+  - opa
+  - real-estate
+  - publishing
+  - media-rights
+links:
+  - name: Source and behavioral checks
+    url: https://github.com/novasia-estate/property-media-rights-gate
+  - name: NovAsia Estate
+    url: https://novasia.estate/
+maintainers:
+  - name: NovAsia Estate
+    email: info@novasia.estate
+provider:
+  name: NovAsia Estate
+ignore:
+  - tests
+install: |
+  Load the policies with OPA 1.x and evaluate the supplied JSON request:
+  opa eval --data policies --input examples/release.json data.novasia.media_rights.decision
+  A true selected_checks_pass value is a metadata workflow result, never a legal authorization.

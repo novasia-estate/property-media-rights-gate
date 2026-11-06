@@ -1,0 +1,35 @@
+name: Verify
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  policy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        opa: ['1.0.1', '1.22.2']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Official OPA release with checksum
+        shell: bash
+        run: |
+          base="https://github.com/open-policy-agent/opa/releases/download/v${{ matrix.opa }}"
+          curl -fsSL "$base/opa_linux_amd64_static" -o "$RUNNER_TEMP/opa_linux_amd64_static"
+          curl -fsSL "$base/opa_linux_amd64_static.sha256" -o "$RUNNER_TEMP/opa.sha256"
+          cd "$RUNNER_TEMP"
+          echo "$(cut -d' ' -f1 opa.sha256)  opa_linux_amd64_static" | sha256sum -c -
+          chmod +x opa_linux_amd64_static
+      - run: '"$RUNNER_TEMP/opa_linux_amd64_static" check --strict policies'
+      - run: '"$RUNNER_TEMP/opa_linux_amd64_static" test policies tests -v'
+      - name: Actual evaluation and local report
+        run: |
+          "$RUNNER_TEMP/opa_linux_amd64_static" eval --format raw --data policies --input examples/release.json data.novasia.media_rights.decision > "$RUNNER_TEMP/decision.json"
+          python tools/render_report.py "$RUNNER_TEMP/decision.json" "$RUNNER_TEMP/report.html"
+          python - "$RUNNER_TEMP/decision.json" <<'PY'
+          import json,sys
+          d=json.load(open(sys.argv[1]))
+          assert d['input_valid'] and not d['selected_checks_pass'] and d['human_review_required']
+          assert d['assets'][1]['reasons']==['crop_not_permitted','expired']
+          assert d['assets'][2]['reasons']==['no_authored_grant']
+          print('Actual OPA consumer PASS')
+          PY
