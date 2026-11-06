@@ -4,7 +4,7 @@
 
 Developed by [NovAsia Estate](https://novasia.estate/). MIT licensed.
 
-![Synthetic release review](docs/report-preview.png)
+![Synthetic release review](https://raw.githubusercontent.com/novasia-estate/property-media-rights-gate/main/docs/report-preview.png)
 
 This is a workflow gate over supplied metadata. It does not read contracts, identify copyright owners, infer licenses, verify evidence or grant legal permission. Every output keeps `human_review_required: true`.
 
@@ -53,4 +53,4 @@ Plain `opa eval decision` returning exit 0 means evaluation succeeded; it does n
 
 Limits: 500 selected assets, 1,000 grants, 20 labels per scope, 64-character ASCII IDs, 500-character attribution text, dates from 1900 through 2100. There is no wildcard, fuzzy match, currency model, clock lookup, content download or account access. The application loading JSON must enforce its own byte and resource limits.
 
-Read [input contract](docs/input.md), [decision semantics](docs/decisions.md), [CI integration](docs/integration.md) and [security/limitations](docs/limits.md).
+Read [input contract](https://github.com/novasia-estate/property-media-rights-gate/blob/main/docs/input.md), [decision semantics](https://github.com/novasia-estate/property-media-rights-gate/blob/main/docs/decisions.md), [CI integration](https://github.com/novasia-estate/property-media-rights-gate/blob/main/docs/integration.md) and [security/limitations](https://github.com/novasia-estate/property-media-rights-gate/blob/main/docs/limits.md).
